@@ -80,8 +80,8 @@ def main():
     print(f"Data aspect ratio: {data_aspect:.3f}")
     print(f"Creating image: 1600x2400 pixels")
     
-    # Create figure
-    fig = plt.figure(figsize=(fig_width, fig_height), dpi=100, facecolor='#0A0A0A')
+    # Create figure with transparent background
+    fig = plt.figure(figsize=(fig_width, fig_height), dpi=100, facecolor='none')
     ax = fig.add_subplot(111)
     ax.set_aspect('equal')
     
@@ -116,15 +116,15 @@ def main():
         for idx, (_, river) in enumerate(argentina_rivers.iterrows()):
             geom = river.geometry
             if geom.geom_type == 'LineString':
-                ax.plot(*geom.coords.xy, color='#4A90E2', linewidth=line_widths[idx], alpha=0.9)
+                ax.plot(*geom.coords.xy, color='black', linewidth=line_widths[idx], alpha=1.0)
             elif geom.geom_type == 'MultiLineString':
                 for line in geom.geoms:
-                    ax.plot(*line.coords.xy, color='#4A90E2', linewidth=line_widths[idx], alpha=0.9)
+                    ax.plot(*line.coords.xy, color='black', linewidth=line_widths[idx], alpha=1.0)
     else:
         # Plot all rivers with same line width
-        argentina_rivers.plot(ax=ax, color='#4A90E2', linewidth=BASE_LINE_WIDTH, alpha=0.9)
+        argentina_rivers.plot(ax=ax, color='black', linewidth=BASE_LINE_WIDTH, alpha=1.0)
     
-    ax.set_facecolor('#0A0A0A')  # Dark background
+    ax.set_facecolor('none')  # Transparent background
     ax.axis('off')
     
     # Add minimal padding to preserve Argentina's natural proportions
@@ -141,11 +141,12 @@ def main():
     
     plt.tight_layout(pad=0.1)
     
-    # Save high-res image
+    # Save high-res image with transparency
     plt.savefig('argentina_rivers_desktop.png', 
-                facecolor='#0A0A0A', 
+                facecolor='none', 
                 dpi=100,
-                pad_inches=0.1)
+                pad_inches=0.1,
+                transparent=True)
     
     print("Desktop background saved as 'argentina_rivers_desktop.png'")
 
