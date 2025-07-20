@@ -20,7 +20,7 @@ MIN_STREAM_ORDER = 8  # ORD_FLOW >= 8 keeps ~69k rivers (51% of total)
 
 # Option 2: Filter by discharge (RECOMMENDED - shows major rivers properly)
 USE_DISCHARGE_FILTER = True  # Set to True to use discharge instead of stream order
-MIN_DISCHARGE = 0.5  # Minimum discharge in m³/s (0.5 keeps ~40k rivers)
+MIN_DISCHARGE = 0.1  # Minimum discharge in m³/s (0.5 keeps ~40k rivers)
                      # 0.1 keeps ~67k rivers, 1.0 keeps ~35k rivers, 5.0 keeps ~13k rivers
 
 # Visual parameters
