@@ -13,20 +13,20 @@ import numpy as np
 from pathlib import Path
 
 # Filtering parameters - adjust these to control river visibility
-# Option 1: Filter by stream order (recommended)
+# Option 1: Filter by stream order (NOT recommended - major rivers have low values)
 MIN_STREAM_ORDER = 8  # ORD_FLOW >= 8 keeps ~69k rivers (51% of total)
                       # ORD_FLOW >= 9 keeps ~33k rivers (25% of total)
                       # ORD_FLOW >= 7 keeps ~109k rivers (81% of total)
 
-# Option 2: Filter by discharge (alternative method)
-USE_DISCHARGE_FILTER = False  # Set to True to use discharge instead of stream order
-MIN_DISCHARGE = 0.1  # Minimum discharge in m³/s (0.5 keeps ~40k rivers)
-                     # 0.1 keeps ~67k rivers, 5.0 keeps ~13k rivers
+# Option 2: Filter by discharge (RECOMMENDED - shows major rivers properly)
+USE_DISCHARGE_FILTER = True  # Set to True to use discharge instead of stream order
+MIN_DISCHARGE = 0.5  # Minimum discharge in m³/s (0.5 keeps ~40k rivers)
+                     # 0.1 keeps ~67k rivers, 1.0 keeps ~35k rivers, 5.0 keeps ~13k rivers
 
 # Visual parameters
 SCALE_LINE_WIDTH = True  # Scale line width based on river size
-BASE_LINE_WIDTH = 0.3   # Base line width for rivers
-MAX_LINE_WIDTH = 1.5    # Maximum line width for largest rivers
+BASE_LINE_WIDTH = 0.2   # Base line width for rivers
+MAX_LINE_WIDTH = 3.0    # Maximum line width for largest rivers
 
 def main():
     print("Loading Argentina boundary...")
